@@ -1,0 +1,39 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns="sap.m"
+	controllerName="com.sapJITMonitor.controller.GoalsBlock">
+	<Table selectionChange="handleSelectionChange" inset="false" id="idProductsTable">
+		<headerToolbar>
+			<Toolbar id="idCrumbToolbar"/>
+		</headerToolbar>
+		<infoToolbar>
+			<Toolbar visible="{Order>/hasCounts}">
+				<Label text="{Order>/count} Products Selected"/>
+			</Toolbar>
+		</infoToolbar>
+		<columns>
+			<Column width="12em" id="idComponentGroup">
+				<Text text="Component Group"/>
+			</Column>
+			<Column id="idPlant" minScreenWidth="Tablet" demandPopin="true" hAlign="End" visible="false">
+				<Text text="Plant"/>
+			</Column>
+			<Column id="idSupplyArea" minScreenWidth="Tablet" demandPopin="true" hAlign="Center" visible="false">
+				<Text text="Supply Area/ Unloading Point"/>
+			</Column>
+			<Column id="idShippingPoint" hAlign="End">
+				<Text text="Shipping Point"/>
+			</Column>
+			<Column id="idInternalProcessingStatus" hAlign="End">
+				<Text text="Intenal Processing Status"/>
+			</Column>
+			<Column id="idCustomerSupplyArea" hAlign="End">
+				<Text text="Customer Supply Area"/>
+			</Column>
+			<Column id="idRequestedDeliveryDate" hAlign="End">
+				<Text text="Requested Delivery Date"/>
+			</Column>
+			<Column id="idActualShippingDate" hAlign="End">
+				<Text text="Actual Shipping Date"/>
+			</Column>
+		</columns>
+	</Table>
+</mvc:View>

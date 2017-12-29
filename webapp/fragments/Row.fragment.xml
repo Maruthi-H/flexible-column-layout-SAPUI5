@@ -1,0 +1,52 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<ColumnListItem vAlign="Middle" type="Navigation">
+		<cells>
+			<Text text="{CGGroup}"/>
+			<Text text="{plant}"/>
+			<Text text="{SuppyAreaOrUnloading}"/>
+			<Text text="{ShippingPoint}"/>
+			<Text text="{InternalProcessingStatus}"/>
+			<Text text="{CustomerSupplyControl}"/>
+			<Text text="{jitcallsModel>RequestedDate}"/>
+			<Text text="{Requested_Delivery_Date}"/>
+		</cells>
+	</ColumnListItem>
+	<!--<ColumnListItem-->
+	<!--	type="{-->
+	<!--		path: 'ProductId',-->
+	<!--		formatter: 'com.sapJITMonitor.controller.Formatter.listItemType'-->
+	<!--	}">-->
+	<!--	<cells>-->
+	<!--<ObjectIdentifier-->
+	<!--	title="{Name}"-->
+	<!--	text="{ProductId}" />-->
+	<!--		<Text-->
+	<!--			text="{-->
+	<!--				parts: [-->
+	<!--					{ path: 'Width' },-->
+	<!--					{ path: 'Depth' },-->
+	<!--					{ path: 'Height' },-->
+	<!--					{ path: 'DimUnit' }-->
+	<!--				],-->
+	<!--				formatter: 'com.sapJITMonitor.controller.Formatter.dimensions'-->
+	<!--			}" />-->
+	<!--		<ObjectNumber-->
+	<!--			number="{WeightMeasure}"-->
+	<!--			unit="{WeightUnit}"-->
+	<!--			state="{-->
+	<!--				path: 'WeightMeasure',-->
+	<!--				formatter: 'com.sapJITMonitor.controller.Formatter.weightState'-->
+	<!--			}" />-->
+	<!--		<ObjectNumber-->
+	<!--			number="{-->
+	<!--				path: 'Price',-->
+	<!--				formatter: 'com.sapJITMonitor.controller.Formatter.round2DP'-->
+	<!--			}"-->
+	<!--			unit="{CurrencyCode}" />-->
+	<!--	</cells>-->
+	<!--</ColumnListItem>-->
+</core:FragmentDefinition>
+<!--selected="{-->
+<!--		path: 'ProductId',-->
+<!--		formatter: 'com.sapJITMonitor.controller.Formatter.isProductSelected'-->
+<!--	}"-->

@@ -1,0 +1,34 @@
+<View xmlns="sap.m" xmlns:ui="sap.ui.table" xmlns:core="sap.ui.core" displayBlock="true"
+	controllerName="com.sapJITMonitor.controller.Detail" height="100%">
+	<Page id="detailPage" title="Datail page">
+		<Table id="idComponentGroupsTable" mode="MultiSelect" items="{ path: 'CGModel>/CG' }">
+			<headerToolbar>
+				<Toolbar>
+					<Title text="Component Groups" level="H2"/>
+					<ToolbarSpacer/>
+					<ToolbarSpacer/>
+						<Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="handleViewSettingsDialogButtonPressed" />
+					<Button text="Show Materials" press="onShowMaterials"/>
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin"><Label text="Component Group"/></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin"><Label text="External Call No."/></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin"><Label text="Customer Supply Area"/></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin"><Label text="Internal Processing Status"/></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin"><Label text="Planned shipping date"/></Column>
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle" type="Navigation">
+					<cells>
+						<Text text="{CGModel>CGGroup}"/>
+						<Text text="{CGModel>ExternalCallNumber}"/>
+						<Text text="{CGModel>SuppyAreaOrUnloading}"/>
+						<Text text="{CGModel>InternalProcessingStatus}"/>
+						<Text text="{CGModel>Requested_Delivery_Date}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</Page>
+</View>

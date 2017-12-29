@@ -1,0 +1,147 @@
+<View xmlns="sap.m" xmlns:f="sap.f" xmlns:fb="sap.ui.comp.filterbar" xmlns:ui="sap.ui.table" xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core" displayBlock="true" controllerName="com.sapJITMonitor.controller.Master" height="100%">
+	<f:DynamicPage id="masterPage" headerExpanded="true" toggleHeaderOnTitleClick="false">
+		<!--<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="{i18n>masterTitle}"/>
+				</f:heading>
+				<f:actions>
+					<ToolbarSpacer/>
+					<SearchField id="searchField" width="50%" search="onSearch" placeholder="{i18n>searchPlaceholder}"></SearchField>
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>-->
+		<f:header>
+			<f:DynamicPageHeader pinnable="false">
+				<f:content>
+					<!--<IconTabBar id="idIconTabBar" select="handleIconTabBarSelect" expandable="false">
+						<items>
+							<IconTabFilter showAll="true" count="{countModel>/allModels}" text="{i18n>allModels}" key="Models"/>
+							<IconTabSeparator/>
+							<IconTabFilter icon="sap-icon://status-positive" iconColor="Positive" count="{countModel>/activeModels}" text="{i18n>activeText}" key="Active"/>
+							<IconTabFilter icon="sap-icon://status-inactive" iconColor="Negative" count="{countModel>/inactiveModels}" text="{i18n>inActiveText}" key="Inactive"/>
+						</items>
+						<content>
+						</content>
+					</IconTabBar>-->
+					<Title text="JIT Calls" class="sapUiTinyMarginTop"/>
+					<fb:FilterBar id="filterBar" useToolbar="false" showGoOnFB="true" search="onSearch" showFilterConfiguration="true">
+						<fb:filterItems>
+							<fb:FilterItem name="A" label="Call Type">
+								<fb:control>
+									<Select id="idCallTypeDropdown" change="onSelectChange" forceSelection="true">
+										<core:Item key="All" text="All"/>
+										<core:Item key="Summarized" text="{i18n>activeText}"/>
+										<core:Item key="Sequenced" text="{i18n>inActiveText}"/>
+									</Select>
+								</fb:control>
+							</fb:FilterItem>
+							<fb:FilterItem name="B" label="Ship to Party">
+								<fb:control>
+									<Input id="idShipToPartyValueHelp" type="Text" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleValueHelp"
+										suggestionItems="{/ProductCollection}">
+										<suggestionItems>
+											<core:Item text="{Name}"/>
+										</suggestionItems>
+									</Input>
+								</fb:control>
+							</fb:FilterItem>
+							<fb:FilterItem name="C" label="External Call Status">
+								<fb:control>
+									<Select id="idExternalCallStatusDropdown" change="onSelectChange" forceSelection="true">
+										<core:Item key="All" text="All"/>
+										<core:Item key="RFP" text="Released for Production(RP01)"/>
+									</Select>
+								</fb:control>
+							</fb:FilterItem>
+							<fb:FilterItem name="D" label="Lifecycle Status">
+								<fb:control>
+									<Select id="idLifeCycleStatusDropDown" change="onSelectChange" forceSelection="true">
+										<core:Item key="all" text="All"/>
+										<core:Item key="create" text="Create"/>
+										<core:Item key="inprocess" text="In Process"/>
+									</Select>
+								</fb:control>
+							</fb:FilterItem>
+							<fb:FilterItem name="E" label="Call Creation Date">
+								<fb:control>
+									<Select id="idCallCreationDateDropDown" change="onSelectChange" forceSelection="true">
+										<core:Item key="all" text="All"/>
+										<core:Item key="last1hour" text="Last 1 hour"/>
+										<core:Item key="last3hour" text="Last 3 hour"/>
+										<core:Item key="last6hour" text="Last 6 hour"/>
+										<core:Item key="last12hour" text="Last 12 hour"/>
+										<core:Item key="yesterday" text="Yesterday"/>
+										<core:Item key="Date Range" text="Date Range"/>
+									</Select>
+								</fb:control>
+							</fb:FilterItem>
+						</fb:filterItems>
+					</fb:FilterBar>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<Table id="idJITCallsTable" inset="false" items="{ path: 'jitcallsModel>/JITCalls' }" busy="{busyTable>/busy}"
+				updateFinished="onUpdateFinished" mode="MultiSelect" selectionChange="handleMasterPress" growing="true" growingScrollToLoad="true"
+				 noDataText="{i18n>NoDataText}">
+				<headerToolbar>
+					<OverflowToolbar id="otbSubheader">
+						<Text text="Just in Time Calls(123)"/>
+						<ToolbarSpacer/>
+						<Button text="Show Only Alerts" type="Transparent" press="onShowOnlyAlertsPress"/>
+						<Button type="Emphasized" text="Show Component Group" press="onShowComponentGroupPress"/>
+						<Button type="Transparent" text="Actions" press="onActionsPress"/>
+						<Button type="Transparent" text="Copy" press="onCopyPress"/>
+						<OverflowToolbarButton type="Transparent" icon="sap-icon://add" press="onActionsPress"/>
+						<OverflowToolbarButton type="Transparent" icon="sap-icon://action" press="onSharePress"/>
+						<OverflowToolbarButton type="Transparent" icon="sap-icon://excel-attachment" press="onExcelAttachmentPress"/>
+						<Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="handleViewSettingsDialogButtonPressed"/>
+					</OverflowToolbar>
+				</headerToolbar>
+				<!--visible="{featureModel>/ESH_MODEL_BROWSER_SEARCH_VIEWS}"-->
+				<columns>
+					<Column>
+						<Text text="Internal Call Number"/>
+					</Column>
+					<Column>
+						<Text text="Alert"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+						<Text text="Ship to Party"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+						<Text id="activationStatus" text="Sequence Number"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+						<Text id="externaCallStatus" text="External Call Status"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+						<Text id="lifeCycleStatus" text="Lifecycle Status"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+						<Text id="callCreationDate" text="Call Creation Date"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation" vAlign="Middle" highlight="{path:'searchCDSViews>ModelStatus',formatter: '.formatter.highlightState'}" press="handleMasterPress">
+						<cells>
+							<ObjectIdentifier title="{jitcallsModel>InternalCallNumber}"></ObjectIdentifier>
+							<core:Icon src="{jitcallsModel>AlertIcon}" class="size3" color="#E69A17">
+								<core:layoutData>
+									<FlexItemData growFactor="1"/>
+								</core:layoutData>
+							</core:Icon>
+							<Text text="{jitcallsModel>ShipToParty}"/>
+							<ObjectStatus text="{jitcallsModel>SequenceNumber}" state="{path:'searchCDSViews>ModelStatus',formatter: '.formatter.highlightState'}"/>
+							<Text text="{jitcallsModel>ExternalCallStatus}"/>
+							<Text text="{jitcallsModel>LifeCycleStatus}"/>
+							<Text text="{jitcallsModel>CallCreationDate}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</f:content>
+	</f:DynamicPage>
+</View>

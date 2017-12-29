@@ -1,0 +1,59 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns="sap.m">
+	<Table id="idComponentGroupsTable" inset="false" items="{ path: 'jitcallsModel>/JITCalls' }" busy="{busyTable>/busy}"
+		updateFinished="onUpdateFinished" mode="MultiSelect" selectionChange="handleMasterPress" growing="true" growingScrollToLoad="true"
+		growingThreshold="20" noDataText="{i18n>NoDataText}">
+		<headerToolbar>
+			<OverflowToolbar id="idJITCallComponentGroupTableToolbar">
+				<Text text="Component Groups (5)"/>
+				<ToolbarSpacer/>
+				<SearchField width="10%" class="sapUiSmallMargin"/>
+				<Button type="Transparent" text="Show Logs" press="onShowOnlyAlertsPress"/>
+				<Button type="Transparent" text="Copy" press="onCopyPress"/>
+				<Button type="Transparent" text="Add" press="onAddPress"/>
+				<Button type="Transparent" text="Delete" press="onDeletePress"/>
+				<Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="handleViewSettingsDialogButtonPressed"/>
+			</OverflowToolbar>
+		</headerToolbar>
+		<!--visible="{featureModel>/ESH_MODEL_BROWSER_SEARCH_VIEWS}"-->
+		<columns>
+			<Column>
+				<Text text="Internal Call Number"/>
+			</Column>
+			<Column>
+				<Text text="Alert"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+				<Text text="Ship to Party"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+				<Text id="activationStatus" text="Sequence Number"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+				<Text id="externaCallStatus" text="External Call Status"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+				<Text id="lifeCycleStatus" text="Lifecycle Status"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+				<Text id="callCreationDate" text="Call Creation Date"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem type="Navigation" vAlign="Middle" highlight="{path:'searchCDSViews>ModelStatus',formatter: '.formatter.highlightState'}">
+				<cells>
+					<ObjectIdentifier title="{jitcallsModel>InternalCallNumber}"></ObjectIdentifier>
+					<core:Icon src="{jitcallsModel>AlertIcon}" class="size3" color="#E69A17">
+						<core:layoutData>
+							<FlexItemData growFactor="1"/>
+						</core:layoutData>
+					</core:Icon>
+					<Text text="{jitcallsModel>ShipToParty}"/>
+					<ObjectStatus text="{jitcallsModel>SequenceNumber}" state="{path:'searchCDSViews>ModelStatus',formatter: '.formatter.highlightState'}"/>
+					<Text text="{jitcallsModel>ExternalCallStatus}"/>
+					<Text text="{jitcallsModel>LifeCycleStatus}"/>
+					<Text text="{jitcallsModel>CallCreationDate}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</mvc:View>

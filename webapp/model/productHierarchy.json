@@ -1,0 +1,121 @@
+{
+	"ProductHierarchy": {
+		"ComponentGroups": [{
+			"CGGroup": "Wheel",
+			"plant": "Walldorf",
+			"SuppyAreaOrUnloading": "SUSTR01",
+			"ShippingPoint": "FG987",
+			"InternalProcessingStatus": "Goods Issued",
+			"CustomerSupplyControl": "VB_FG_2342",
+			"Requested_Delivery_Date": "In 1 hour",
+			"ACtualShippingPoint": "In 20 minutes",
+			"Price": 856.49,
+			"Materials": [{
+				"Material": "Right Front Door",
+				"CustomerMaterial": "Right Front Door",
+				"RequestedQuantity": "2",
+				"DeliveredQuantity": "2",
+				"ConfirmedQuantity": "2",
+				"SalesSchedulingAgreement": "1002000000",
+				"item": "0010",
+				"LifeCycleStatus": "New"
+			}, {
+				"Material": "Left Front Door",
+				"CustomerMaterial": "Left Front Door",
+				"RequestedQuantity": "2",
+				"DeliveredQuantity": "2",
+				"ConfirmedQuantity": "2",
+				"SalesSchedulingAgreement": "1002000001",
+				"item": "0011",
+				"LifeCycleStatus": "In Process"
+			}]
+		}, {
+			"CGGroup": "Bonnet",
+			"plant": "Walldorf",
+			"SuppyAreaOrUnloading": "SUSTR01",
+			"ShippingPoint": "Area1",
+			"InternalProcessingStatus": "Goods Issue Delayed",
+			"CustomerSupplyControl": "VB_FG_2345",
+			"Requested_Delivery_Date": "In 1 hour",
+			"ACtualShippingPoint": "In 20 minutes",
+			"Price": 856.49,
+			"Materials": [{
+				"Material": "Right Front Door",
+				"CustomerMaterial": "Right Front Door",
+				"RequestedQuantity": "2",
+				"DeliveredQuantity": "2",
+				"ConfirmedQuantity": "2",
+				"SalesSchedulingAgreement": "1002000000",
+				"item": "0010",
+				"LifeCycleStatus": "In process"
+			}, {
+				"Material": "Left Front Door",
+				"CustomerMaterial": "Left Front Door",
+				"RequestedQuantity": "2",
+				"DeliveredQuantity": "2",
+				"ConfirmedQuantity": "2",
+				"SalesSchedulingAgreement": "1002000001",
+				"item": "0011",
+				"LifeCycleStatus": "completed"
+			}]
+		}, {
+			"CGGroup": "Wheel",
+			"plant": "Walldorf",
+			"SuppyAreaOrUnloading": "SUSTR01",
+			"ShippingPoint": "FG987",
+			"InternalProcessingStatus": "Goods Issued",
+			"CustomerSupplyControl": "VB_FG_2342",
+			"Requested_Delivery_Date": "In 1 hour",
+			"ACtualShippingPoint": "In 20 minutes",
+			"Price": 856.49,
+			"Materials": [{
+				"Material": "Right Front Door",
+				"CustomerMaterial": "Right Front Door",
+				"RequestedQuantity": "2",
+				"DeliveredQuantity": "2",
+				"ConfirmedQuantity": "2",
+				"SalesSchedulingAgreement": "1002000000",
+				"item": "0010",
+				"LifeCycleStatus": "New"
+			}, {
+				"Material": "Left Front Door",
+				"CustomerMaterial": "Left Front Door",
+				"RequestedQuantity": "2",
+				"DeliveredQuantity": "2",
+				"ConfirmedQuantity": "2",
+				"SalesSchedulingAgreement": "1002000001",
+				"item": "0011",
+				"LifeCycleStatus": "In Process"
+			}]
+		}, {
+			"CGGroup": "Wheel",
+			"plant": "Walldorf",
+			"SuppyAreaOrUnloading": "SUSTR01",
+			"ShippingPoint": "FG987",
+			"InternalProcessingStatus": "Goods Issued",
+			"CustomerSupplyControl": "VB_FG_2342",
+			"Requested_Delivery_Date": "In 1 hour",
+			"ACtualShippingPoint": "In 20 minutes",
+			"Price": 856.49,
+			"Materials": [{
+				"Material": "Right Front Door",
+				"CustomerMaterial": "Right Front Door",
+				"RequestedQuantity": "2",
+				"DeliveredQuantity": "2",
+				"ConfirmedQuantity": "2",
+				"SalesSchedulingAgreement": "1002000000",
+				"item": "0010",
+				"LifeCycleStatus": "New"
+			}, {
+				"Material": "Left Front Door",
+				"CustomerMaterial": "Left Front Door",
+				"RequestedQuantity": "2",
+				"DeliveredQuantity": "2",
+				"ConfirmedQuantity": "2",
+				"SalesSchedulingAgreement": "1002000001",
+				"item": "0011",
+				"LifeCycleStatus": "In Process"
+			}]
+		}]
+	}
+}

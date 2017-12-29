@@ -1,0 +1,44 @@
+<mvc:View controllerName="com.sapJITMonitor.controller.View1" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+	<App>
+		<pages>
+			<Page title="Your Quick Start application is ready!">
+				<content>
+					<VBox direction="Column" id="vbox0" justifyContent="Center" width="100%">
+						<items>
+							<Label id="label3" text="Try out the Layout Editor and then click Run." textAlign="Center" width="100%"/>
+						</items>
+					</VBox>
+					<Table id="table0" items="{/Entity1_Set}" noDataText="Drop column list items here and columns in the area above">
+						<items>
+							<ColumnListItem counter="0" id="item1">
+								<cells>
+									<Text id="text5" maxLines="0" text="{Id}"/>
+									<Text id="text6" maxLines="0" text="{field1}"/>
+									<Text id="text7" maxLines="0" text="{field2}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+						<columns>
+							<Column id="column0">
+								<header>
+									<Label id="label0" text="Id"/>
+								</header>
+							</Column>
+							<Column id="column1">
+								<header>
+									<Label id="label1" text="field1"/>
+								</header>
+							</Column>
+							<Column id="column2">
+								<header>
+									<Label id="label2" text="field2"/>
+								</header>
+							</Column>
+						</columns>
+					</Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

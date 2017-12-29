@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<ColumnListItem vAlign="Middle" type="Navigation">
+		<cells>
+			<Text text="{jitcallsModel>ExternalCallNumber}"/>
+			<Text text="{jitcallsModel>ExternalCallNumber}"/>
+			<Text text="{jitcallsModel>ExternalCallNumber}"/>
+			<Text text="{jitcallsModel>ExternalCallNumber}"/>
+			<Text text="{jitcallsModel>ExternalCallNumber}"/>
+		</cells>
+	</ColumnListItem>
+</core:FragmentDefinition>
