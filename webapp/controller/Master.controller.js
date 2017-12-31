@@ -61,9 +61,19 @@ sap.ui.define([
 			// var tab = this.getView().byId("idAlertsTab");
 			// tab.setCount(table.getItems().length);
 		},
-		handleMasterPress: function() {
-			MessageToast.show("Loading mid column...");
-			this.bus.publish("flexible", "setDetailPage");
+		handleMasterPress: function(oEvent) {
+			var aCells = oEvent.getSource().getCells();
+			var nInternalCallNumber = Number(aCells[0].getTitle());
+			var aJITCalls = oEvent.getSource().getModel("jitcallsModel").getData().JITCalls;
+			var len = aJITCalls.length;
+			var oJITCall = {};
+			for(var i = 0 ; i < len ; i++){
+				if(nInternalCallNumber === aJITCalls[i].InternalCallNumber){
+					oJITCall = aJITCalls[i];
+				}
+			}
+			MessageToast.show("Loading Object Page for JITCall "+ oJITCall.InternalCallNumber );
+			this.bus.publish("flexible", "setDetailPage", oJITCall);
 		},
 		handleViewSettingsDialogButtonPressed: function (oEvent) {
 			if (!this._oDialog) {

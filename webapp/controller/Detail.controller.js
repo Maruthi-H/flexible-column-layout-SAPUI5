@@ -12,15 +12,15 @@ sap.ui.define([
 			debugger;
 			this.bus = sap.ui.getCore().getEventBus();
 			this.bus.subscribe("flexible1", "setDetailPage", this.setDetailPage, this);
-			this.mGroupFunctions = {
-				ExternalCallNumber: function(oContext) {
-					var name = oContext.getProperty("ExternalCallNumber");
-					return {
-						key: "ExternalCallNumber",
-						text: "ExternalCallNumber"
-					};
-				}
-			};
+			// this.mGroupFunctions = {
+			// 	ExternalCallNumber: function(oContext) {
+			// 		var name = oContext.getProperty("ExternalCallNumber");
+			// 		return {
+			// 			key: "ExternalCallNumber",
+			// 			text: "ExternalCallNumber"
+			// 		};
+			// 	}
+			// };
 			// if (!this.oTemplate) {
 			// 	this.oTemplate = sap.ui.xmlfragment("com.sapJITMonitor.fragments.ComponentGroupRow");
 			// }
@@ -38,21 +38,26 @@ sap.ui.define([
 		// Lazy loader for the mid page - only on demand (when the user clicks)
 		setDetailPage: function(sChannel, sEvent, oData) {
 			debugger;
-			var oJITCallsModel = new sap.ui.model.json.JSONModel();
-			oJITCallsModel.loadData("model/jitcalls.json", {}, false, "GET");
-			var JITCalls = oJITCallsModel.getData().JITCalls;
-			var selectedJITCalls = {
-				CG: []
-			};
-			for (var i in oData.aSelectedIndices) {
-				for (var cg in JITCalls[oData.aSelectedIndices[i]].ComponentGroups) {
-					selectedJITCalls.CG.push(JITCalls[oData.aSelectedIndices[i]].ComponentGroups[cg]);
-				}
-			}
-			var CGTable = this.byId("idComponentGroupsTable");
-			var oJITCallsCGModel = new sap.ui.model.json.JSONModel();
-			oJITCallsCGModel.setData(selectedJITCalls);
-			CGTable.setModel(oJITCallsCGModel, "CGModel");
+			var oCG = {};
+			oCG.CG= oData.ComponentGroups;
+			var oJITCallObjectModel = new sap.ui.model.json.JSONModel();
+			oJITCallObjectModel.setData(oCG);
+			this.getView().setModel(oJITCallObjectModel, "JITCallObjectPageModel");
+			//oJITCallsModel.loadData("model/jitcalls.json", {}, false, "GET");
+			
+			// var JITCalls = oJITCallsModel.getData().JITCalls;
+			// var selectedJITCalls = {
+			// 	CG: []
+			// };
+			// for (var i in oData.aSelectedIndices) {
+			// 	for (var cg in JITCalls[oData.aSelectedIndices[i]].ComponentGroups) {
+			// 		selectedJITCalls.CG.push(JITCalls[oData.aSelectedIndices[i]].ComponentGroups[cg]);
+			// 	}
+			// }
+			// var CGTable = this.byId("idComponentGroupsTable");
+			// var oJITCallsCGModel = new sap.ui.model.json.JSONModel();
+			// oJITCallsCGModel.setData(selectedJITCalls);
+			// CGTable.setModel(oJITCallsCGModel, "CGModel");
 
 		},
 		handleViewSettingsDialogButtonPressed: function (oEvent) {
