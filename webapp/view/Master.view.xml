@@ -84,11 +84,11 @@
 		</f:header>
 		<f:content>
 			<Table id="idJITCallsTable" inset="false" items="{ path: 'jitcallsModel>/JITCalls' }" busy="{busyTable>/busy}"
-				updateFinished="onUpdateFinished" mode="MultiSelect" selectionChange="handleMasterPress" growing="true" growingScrollToLoad="true"
+				updateFinished="onUpdateFinished" mode="MultiSelect" selectionChange="handleVisibilityOfButtons" growing="true" growingScrollToLoad="true"
 				 noDataText="{i18n>NoDataText}">
 				<headerToolbar>
 					<OverflowToolbar id="otbSubheader">
-						<Text text="Just in Time Calls(123)"/>
+						<Text id="idJITCallsCountText" text="Just in Time Calls(123)"/>
 						<ToolbarSpacer/>
 						<Button text="Show Only Alerts" type="Transparent" press="onShowOnlyAlertsPress"/>
 						<Button type="Emphasized" text="Show Component Group" press="onShowComponentGroupPress"/>

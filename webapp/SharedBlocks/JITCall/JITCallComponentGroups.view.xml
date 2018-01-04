@@ -19,10 +19,10 @@
 			<Column>
 				<Text text="Component Group Material"/>
 			</Column>
-			<Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
 				<Text text="Group No./ Index"/>
 			</Column>
-			<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+			<Column>
 				<Text text="Internal Processing Status"/>
 			</Column>
 			<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">

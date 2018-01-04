@@ -7,11 +7,13 @@ sap.ui.define([
 ], function(Controller, MessageToast, models, Sorter, Filter) {
 	"use strict";
 
-	return Controller.extend("com.sapJITMonitor.controller.Detail", {
+	return Controller.extend("com.sapJITMonitor.controller.DetailCG", {
 		onInit: function() {
 			debugger;
 			this.bus = sap.ui.getCore().getEventBus();
-			this.bus.subscribe("flexible1", "setDetailPage", this.setDetailPage, this);
+			this.bus.subscribe("loadAggregatedView", "setDetailCGPage", this.setDetailCGPage, this);
+			
+
 		},
 		handleDetailPress: function() {
 
@@ -19,13 +21,23 @@ sap.ui.define([
 			this.bus.publish("flexible", "setDetailDetailPage");
 		},
 		// Lazy loader for the mid page - only on demand (when the user clicks)
-		setDetailPage: function(sChannel, sEvent, oData) {
+		setDetailCGPage: function(sChannel, sEvent, oData) {
 			debugger;
-			var oCG = {};
-			oCG.CG= oData.ComponentGroups;
 			var oJITCallObjectModel = new sap.ui.model.json.JSONModel();
-			oJITCallObjectModel.setData(oCG);
-			this.getView().setModel(oJITCallObjectModel, "JITCallObjectPageModel");
+			oJITCallObjectModel.setData(oData);
+			this.getView().setModel(oJITCallObjectModel, "CGModel");
+			
+
+		},
+		
+		onUpdateFinished: function(oEvent){
+			debugger;
+			var oCGTable = this.getView().byId("idComponentGroupsTable");
+			var oCGCountText = oCGTable.getHeaderToolbar().getContent()[0];
+			var count = oCGTable.getModel("CGModel").getData().CG.length;
+			var sText = "Items (" + count +")";
+			oCGCountText.setText(sText)
+		
 		},
 		
 		handleViewSettingsDialogButtonPressed: function (oEvent) {
@@ -36,7 +48,6 @@ sap.ui.define([
 			jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
 			this._oDialog.open();
 		},
-		
 		handleConfirm: function(oEvent) {
 			debugger;
 			var oView = this.getView();

@@ -9,7 +9,9 @@ sap.ui.define([
 		onInit: function() {
 			this.bus = sap.ui.getCore().getEventBus();
 			this.bus.subscribe("flexible", "setDetailPage", this.setDetailPage, this);
-			this.bus.subscribe("flexible", "setDetailDetailPage", this.setDetailDetailPage, this);
+			// this.bus.subscribe("flexible", "setDetailDetailPage", this.setDetailDetailPage, this);
+			this.bus.subscribe("flexible2", "setDetailCGPage", this.setDetailCGPage, this);
+
 
 			this.oFlexibleColumnLayout = this.getView().byId("fcl");
 
@@ -50,8 +52,9 @@ sap.ui.define([
 		},
 
 		onExit: function() {
-			this.bus.unsubscribe("flexible", "setDetailPage", this.setDetailPage, this);
-			this.bus.unsubscribe("flexible", "setDetailDetailPage", this.setDetailDetailPage, this);
+			// this.bus.unsubscribe("flexible", "setDetailPage", this.setDetailPage, this);
+			// //this.bus.unsubscribe("flexible", "setDetailDetailPage", this.setDetailDetailPage, this);
+			// this.bus.unsubscribe("flexible2", "setDetailCGPage", this.setDetailCGPage, this);
 		},
 
 		// Lazy loader for the mid page - only on demand (when the user clicks)
@@ -65,7 +68,25 @@ sap.ui.define([
 				});
 			}
 			this.bus.publish("flexible1", "setDetailPage", data);
+			var vCurrentMidPage = this.oFlexibleColumnLayout.getCurrentMidColumnPage();
+			this.oFlexibleColumnLayout.removeMidColumnPage(vCurrentMidPage);
 			this.oFlexibleColumnLayout.addMidColumnPage(this.detailView);
+			this.oFlexibleColumnLayout.setLayout(sap.f.LayoutType.TwoColumnsBeginExpanded);
+		},
+		// Lazy loader for the mid page - only on demand (when the user clicks)
+		setDetailCGPage: function(channel, eventId, data) {
+			debugger;
+			if (!this.detailCGView) {
+				this.detailCGView = sap.ui.view({
+					id: "midAggrView",
+					viewName: "com.sapJITMonitor.view.DetailCG",
+					type: "XML"
+				});
+			}
+			this.bus.publish("loadAggregatedView", "setDetailCGPage", data);
+			var vCurrentMidPage = this.oFlexibleColumnLayout.getCurrentMidColumnPage();
+			this.oFlexibleColumnLayout.removeMidColumnPage(vCurrentMidPage);
+			this.oFlexibleColumnLayout.addMidColumnPage(this.detailCGView);
 			this.oFlexibleColumnLayout.setLayout(sap.f.LayoutType.TwoColumnsBeginExpanded);
 		},
 

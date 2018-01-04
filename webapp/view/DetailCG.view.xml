@@ -1,0 +1,95 @@
+<core:View xmlns="sap.m" xmlns:f="sap.f" xmlns:fb="sap.ui.comp.filterbar" xmlns:ui="sap.ui.table" xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core" controllerName="com.sapJITMonitor.controller.DetailCG" displayBlock="true" height="100%">
+	<f:DynamicPage id="masterPage" headerExpanded="true" toggleHeaderOnTitleClick="false">
+		<!--<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="{i18n>masterTitle}"/>
+				</f:heading>
+				<f:actions>
+					<ToolbarSpacer/>
+					<SearchField id="searchField" width="50%" search="onSearch" placeholder="{i18n>searchPlaceholder}"></SearchField>
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>-->
+		<f:header>
+			<f:DynamicPageHeader pinnable="false">
+				<f:content>
+					<!--<IconTabBar id="idIconTabBar" select="handleIconTabBarSelect" expandable="false">
+						<items>
+							<IconTabFilter showAll="true" count="{countModel>/allModels}" text="{i18n>allModels}" key="Models"/>
+							<IconTabSeparator/>
+							<IconTabFilter icon="sap-icon://status-positive" iconColor="Positive" count="{countModel>/activeModels}" text="{i18n>activeText}" key="Active"/>
+							<IconTabFilter icon="sap-icon://status-inactive" iconColor="Negative" count="{countModel>/inactiveModels}" text="{i18n>inActiveText}" key="Inactive"/>
+						</items>
+						<content>
+						</content>
+					</IconTabBar>-->
+					<Title text="Component Group of Selected JIT Calls" class="sapUiTinyMarginTop"/>
+					<!--<fb:FilterBar id="filterBar" useToolbar="false" showGoOnFB="true" search="onSearch" showFilterConfiguration="true">-->
+					
+					<!--</fb:FilterBar>-->
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<Table id="idComponentGroupsTable" inset="false" items="{ path: 'CGModel>/CG' }" busy="{busyTable>/busy}" updateFinished="onUpdateFinished"
+				mode="MultiSelect" selectionChange="handleMasterPress" growing="true" growingScrollToLoad="true" growingThreshold="10"
+				noDataText="{i18n>NoDataText}">
+				<headerToolbar>
+					<OverflowToolbar id="idJITCallComponentGroupTableToolbar">
+						<Text id="idCGCountText" text="Component Groups (5)"/>
+						<ToolbarSpacer/>
+						<SearchField width="10%" class="sapUiSmallMargin"/>
+						<Button type="Transparent" text="Show Logs" press="onShowOnlyAlertsPress"/>
+						<Button type="Transparent" text="Copy" press="onCopyPress"/>
+						<Button type="Transparent" text="Add" press="onAddPress"/>
+						<Button type="Transparent" text="Delete" press="onDeletePress"/>
+						<Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="handleViewSettingsDialogButtonPressed"/>
+					</OverflowToolbar>
+				</headerToolbar>
+				<!--visible="{featureModel>/ESH_MODEL_BROWSER_SEARCH_VIEWS}"-->
+				<columns>
+					<Column>
+						<Text text="Component Group Material"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+						<Text text="Group No./ Index"/>
+					</Column>
+					<Column>
+						<Text text="Internal Processing Status"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+						<Text text="Planned Shipping"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+						<Text text="Actual Shipping"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+						<Text text="Plant"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+						<Text text="Customer Supply Area"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+						<Text text="Customer Supply Control"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation" vAlign="Middle" highlight="{path:'searchCDSViews>ModelStatus',formatter: '.formatter.highlightState'}">
+						<cells>
+							<ObjectIdentifier title="{CGModel>ComponentGroupMaterial}"></ObjectIdentifier>
+							<Text text="{CGModel>GroupNo}"/>
+							<Text text="{CGModel>InternalProcessingStatus}"/>
+							<ObjectStatus text="{CGModel>PlannedShipping}" state="{path:'searchCDSViews>ModelStatus',formatter: '.formatter.highlightState'}"/>
+							<Text text="{CGModel>ActualShipping}"/>
+							<Text text="{CGModel>Plant}"/>
+							<Text text="{CGModel>CustomerSupplyArea}"/>
+							<Text text="{CGModel>CustomerSupplyControl}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</f:content>
+	</f:DynamicPage>
+</core:View>
