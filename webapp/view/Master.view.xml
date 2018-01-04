@@ -94,7 +94,7 @@
 						<Button type="Emphasized" text="Show Component Group" press="onShowComponentGroupPress"/>
 						<Button type="Transparent" text="Actions" press="onActionsPress"/>
 						<Button type="Transparent" text="Copy" press="onCopyPress"/>
-						<OverflowToolbarButton type="Transparent" icon="sap-icon://add" press="onActionsPress"/>
+						<OverflowToolbarButton type="Transparent" icon="sap-icon://add" press="onCreatePress"/>
 						<OverflowToolbarButton type="Transparent" icon="sap-icon://action" press="onSharePress"/>
 						<OverflowToolbarButton type="Transparent" icon="sap-icon://excel-attachment" press="onExcelAttachmentPress"/>
 						<Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="handleViewSettingsDialogButtonPressed"/>

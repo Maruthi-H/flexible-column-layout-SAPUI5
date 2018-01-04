@@ -1,5 +1,5 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:forms="sap.ui.layout.form">
-	<forms:SimpleForm labelSpanL="4" labelSpanM="4" labelSpanS="4" emptySpanL="0" emptySpanM="0" emptySpanS="0" maxContainerCols="2"
+	<forms:SimpleForm id="idRepeatOrder" labelSpanL="4" labelSpanM="4" labelSpanS="4" emptySpanL="0" emptySpanM="0" emptySpanS="0" maxContainerCols="2"
 		layout="ResponsiveGridLayout" width="100%">
 		<Label text="Repeat Order"/>
 		<Text text="No"/>

@@ -1,0 +1,116 @@
+<core:View xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:layout="sap.ui.layout" xmlns:m="sap.m" xmlns:f="sap.ui.layout.form"
+	xmlns:sample="com.sapJITMonitor.SharedBlocks" xmlns:deatailCreate="com.sapJITMonitor.SharedBlocks.DetailCreate"
+	controllerName="com.sapJITMonitor.controller.DetailDetailCreate" height="100%">
+	<ObjectPageLayout id="idDetailDetailCreateObjectPage" alwaysShowContentHeader="true">
+		<headerTitle>
+			<ObjectPageHeader id="idDetailDetailCreateObjectPageHeader" headerDesign="Light" objectTitle="1000002">
+				<actions>
+					<m:Button id="idDetailDetailCreateCallObjectPageEdit" text="Edit" type="Transparent"/>
+				</actions>
+			</ObjectPageHeader>
+		</headerTitle>
+		<headerContent>
+			<layout:VerticalLayout>
+				<m:ObjectStatus title="External Call Number1" text="1000000"/>
+				<m:ObjectStatus title="Call Type" text="Sequenced JIT Call"/>
+			</layout:VerticalLayout>
+			<layout:VerticalLayout>
+				<m:VBox >
+					<m:Label text="Ship-to-Party"/>
+					<m:Text text="Diamler Bremen, VW_WB_CUS_1"/>
+				</m:VBox>
+			</layout:VerticalLayout>
+			<layout:VerticalLayout>
+				<m:ObjectStatus title="External Status" text="Released for Production"/>
+				<m:ObjectStatus title="Updated On" text="20 Nov, 2017, 12:00:00"/>
+			</layout:VerticalLayout>
+			<layout:VerticalLayout>
+				<m:VBox>
+					<m:Label text="Life Cycle Status"/>
+					<m:Text text="Active"/>
+				</m:VBox>
+			</layout:VerticalLayout>
+		</headerContent>
+		<sections>
+			<ObjectPageSection id="idDetailDetailCreateHeaderBlock" title="Header Details">
+				<subSections>
+					<ObjectPageSubSection title="">
+						<blocks>
+							<deatailCreate:JITCallHeaderDetails2 id="idDetailDetailCreateHeaderDetails2"/>
+							<deatailCreate:JITCallHeaderDetails1 id="idDetailDetailCreateHeaderDetails1"/>
+							<deatailCreate:JITCallHeaderDetails3 id="idDetailDetailCreateHeaderDetails3"/>
+						</blocks>
+						<!--<moreBlocks>-->
+						<!--</moreBlocks>-->
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection id="idDetailDetailCreateDetailCreateComponentGroups" title="Component Groups">
+				<subSections>
+					<ObjectPageSubSection title="Component Groups">
+						<blocks>
+							<m:Table id="idComponentGroupsCreateTable" inset="false" items="{ path: 'DetailCreate1Model>/CG' }" busy="{busyTable>/busy}"
+								updateFinished="onUpdateFinished" mode="MultiSelect" selectionChange="handleMasterPress" growing="true" growingScrollToLoad="true"
+								growingThreshold="20" noDataText="{i18n>NoDataText}">
+								<m:headerToolbar>
+									<m:OverflowToolbar id="idJITCallComponentGroupTableToolbar">
+										<m:Text text="Component Groups (5)"/>
+										<m:ToolbarSpacer/>
+										<m:SearchField width="10%" class="sapUiSmallMargin"/>
+										<m:Button type="Transparent" text="Show Logs" press="onShowOnlyAlertsPress"/>
+										<m:Button type="Transparent" text="Copy" press="onCopyPress"/>
+										<m:Button type="Transparent" text="Add" press="onAddPress"/>
+										<m:Button type="Transparent" text="Delete" press="onDeletePress"/>
+										<m:Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="handleViewSettingsDialogButtonPressed"/>
+									</m:OverflowToolbar>
+								</m:headerToolbar>
+								<!--visible="{featureModel>/ESH_MODEL_BROWSER_SEARCH_VIEWS}"-->
+								<m:columns>
+									<m:Column>
+										<m:Text text="Component Group Material"/>
+									</m:Column>
+									<m:Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+										<m:Text text="Group No./ Index"/>
+									</m:Column>
+									<!--<m:Column>-->
+									<!--	<m:Text text="Internal Processing Status"/>-->
+									<!--</m:Column>-->
+									<m:Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+										<m:Text text="Planned Shipping"/>
+									</m:Column>
+									<m:Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+										<m:Text text="Actual Shipping"/>
+									</m:Column>
+									<m:Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+										<m:Text text="Plant"/>
+									</m:Column>
+									<m:Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+										<m:Text text="Customer Supply Area"/>
+									</m:Column>
+									<m:Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+										<m:Text text="Customer Supply Control"/>
+									</m:Column>
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem type="Navigation" vAlign="Middle" highlight="{path:'searchCDSViews>ModelStatus',formatter: '.formatter.highlightState'}">
+										<m:cells>
+											<m:ObjectIdentifier title="{DetailCreate1Model>ComponentGroupMaterial}"></m:ObjectIdentifier>
+											<m:Text text="{DetailCreate1Model>GroupNo}"/>
+											<!--<m:Text text="{DetailCreate1Model>InternalProcessingStatus}"/>-->
+											<m:ObjectStatus text="{DetailCreate1Model>PlannedShipping}"
+												state="{path:'searchCDSViews>ModelStatus',formatter: '.formatter.highlightState'}"/>
+											<m:Text text="{DetailCreate1Model>ActualShipping}"/>
+											<m:Text text="{DetailCreate1Model>Plant}"/>
+											<m:Text text="{DetailCreate1Model>CustomerSupplyArea}"/>
+											<m:Text text="{DetailCreate1Model>CustomerSupplyControl}"/>
+										</m:cells>
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
+</core:View>

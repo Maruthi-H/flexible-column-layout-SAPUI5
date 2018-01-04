@@ -13,6 +13,12 @@ sap.ui.define([
 			this.bus = sap.ui.getCore().getEventBus();
 			this.bus.subscribe("flexible1", "setDetailPage", this.setDetailPage, this);
 		},
+		onBeforeRendering: function(){
+		 	debugger;
+		},
+		onAfterRendering: function(){
+			debugger;
+		},
 		handleDetailPress: function() {
 
 			MessageToast.show("Loading end column...");
@@ -26,6 +32,9 @@ sap.ui.define([
 			var oJITCallObjectModel = new sap.ui.model.json.JSONModel();
 			oJITCallObjectModel.setData(oCG);
 			this.getView().setModel(oJITCallObjectModel, "JITCallObjectPageModel");
+		},
+		onUpdateFinished:  function(oEvent){
+			debugger;
 		},
 		
 		handleViewSettingsDialogButtonPressed: function (oEvent) {
