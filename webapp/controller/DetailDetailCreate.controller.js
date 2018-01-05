@@ -11,6 +11,7 @@ sap.ui.define([
 		onInit: function() {
 			debugger;
 			this.bus = sap.ui.getCore().getEventBus();
+			//this.bus.subscribe("loadDetailDetailCreateView", "setDetailCreatePage", this.setDetailCreatePage, this);	
 			// var oCreateCGModel = {
 			// 	CG: [{
 			// 		"ComponentGroupMaterial": "",

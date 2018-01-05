@@ -5,7 +5,7 @@
 		<headerTitle>
 			<ObjectPageHeader id="idDetailCreateObjectPageHeader" headerDesign="Light" objectTitle="1000002">
 				<actions>
-					<m:Button id="idDetailCreateCallObjectPageEdit" text="Edit" type="Transparent"/>
+					<!--<m:Button id="idDetailCreateCallObjectPageEdit" text="Edit" type="Transparent"/>-->
 				</actions>
 			</ObjectPageHeader>
 		</headerTitle>
@@ -69,25 +69,25 @@
 									<m:Column>
 										<m:Text text="Component Group Material"/>
 									</m:Column>
-									<m:Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+									<m:Column minScreenWidth="Tablet" demandPopin="true">
 										<m:Text text="Group No./ Index"/>
 									</m:Column>
 									<!--<m:Column>-->
 									<!--	<m:Text text="Internal Processing Status"/>-->
 									<!--</m:Column>-->
-									<m:Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+									<m:Column minScreenWidth="Tablet" demandPopin="true" >
 										<m:Text text="Planned Shipping"/>
 									</m:Column>
-									<m:Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+									<m:Column minScreenWidth="Tablet" demandPopin="true" >
 										<m:Text text="Actual Shipping"/>
 									</m:Column>
-									<m:Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+									<m:Column minScreenWidth="Tablet" demandPopin="true" >
 										<m:Text text="Plant"/>
 									</m:Column>
-									<m:Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+									<m:Column minScreenWidth="Tablet" demandPopin="true" >
 										<m:Text text="Customer Supply Area"/>
 									</m:Column>
-									<m:Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader">
+									<m:Column minScreenWidth="Tablet" demandPopin="true" >
 										<m:Text text="Customer Supply Control"/>
 									</m:Column>
 								</m:columns>

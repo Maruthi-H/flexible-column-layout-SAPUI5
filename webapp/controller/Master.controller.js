@@ -55,6 +55,12 @@ sap.ui.define([
 			// 	return false;
 			// }
 		},
+		onCreatePress: function(oEvent){
+			debugger;
+			MessageToast.show("Loading Object Page for CG creation");
+			this.bus.publish("flexibleCreate", "setDetailCreatePage");
+		},
+		
 		onUpdateFinished: function(oEvent) {
 			debugger;
 			var oCGTable = this.getView().byId("idJITCallsTable");

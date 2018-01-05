@@ -11,6 +11,7 @@ sap.ui.define([
 		onInit: function() {
 			debugger;
 			this.bus = sap.ui.getCore().getEventBus();
+			this.bus.subscribe("loadDetailCreateView", "setDetailCreatePage", this.setDetailCreatePage, this);
 			var oCreateCGModel = {
 				CG: [{
 					"ComponentGroupMaterial": "",
@@ -85,11 +86,14 @@ sap.ui.define([
 		onAfterRendering: function() {
 			debugger;
 		},
+		setDetailCreatePage: function(oEvent){
+			debugger;
+		},
 
 		handleDetailPress: function() {
 			debugger;
 			MessageToast.show("Loading end column...");
-			this.bus.publish("flexible", "setDetailDetailPage");
+			this.bus.publish("flexibleDetailDetailCreate", "setDetailDetailPage");
 		},
 		// Lazy loader for the mid page - only on demand (when the user clicks)
 		setDetailPage: function(sChannel, sEvent, oData) {
