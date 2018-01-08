@@ -38,5 +38,5 @@
       "description": "SAPUI5 Test Resources"
     }
   ],
-  "sendWelcomeFileRedirect": true
+  "sendWelcomeFileRedirect": true 
 }
