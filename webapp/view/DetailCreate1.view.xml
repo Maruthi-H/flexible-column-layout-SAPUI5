@@ -3,7 +3,7 @@
 	controllerName="com.sapJITMonitor.controller.DetailCreate1" height="100%">
 	<ObjectPageLayout id="idDetailCreateObjectPage" alwaysShowContentHeader="true">
 		<headerTitle>
-			<ObjectPageHeader id="idDetailCreateObjectPageHeader" headerDesign="Light" objectTitle="1000002">
+			<ObjectPageHeader id="idDetailCreateObjectPageHeader" headerDesign="Light" objectTitle="Create JIT Call">
 				<actions>
 					<!--<m:Button id="idDetailCreateCallObjectPageEdit" text="Edit" type="Transparent"/>-->
 				</actions>
@@ -11,7 +11,7 @@
 		</headerTitle>
 		<headerContent>
 			<layout:VerticalLayout>
-				<m:ObjectStatus title="External Call Number1" text="1000000"/>
+				<m:ObjectStatus title="External Call Number1" text="Create JIT Call"/>
 				<m:ObjectStatus title="Call Type" text="Sequenced JIT Call"/>
 			</layout:VerticalLayout>
 			<layout:VerticalLayout>

@@ -1,30 +1,9 @@
 <View xmlns="sap.m" xmlns:f="sap.f" xmlns:fb="sap.ui.comp.filterbar" xmlns:ui="sap.ui.table" xmlns:l="sap.ui.layout"
 	xmlns:core="sap.ui.core" displayBlock="true" controllerName="com.sapJITMonitor.controller.Master" height="100%">
 	<f:DynamicPage id="masterPage" headerExpanded="true" toggleHeaderOnTitleClick="false">
-		<!--<f:title>
-			<f:DynamicPageTitle>
-				<f:heading>
-					<Title text="{i18n>masterTitle}"/>
-				</f:heading>
-				<f:actions>
-					<ToolbarSpacer/>
-					<SearchField id="searchField" width="50%" search="onSearch" placeholder="{i18n>searchPlaceholder}"></SearchField>
-				</f:actions>
-			</f:DynamicPageTitle>
-		</f:title>-->
 		<f:header>
 			<f:DynamicPageHeader pinnable="false">
 				<f:content>
-					<!--<IconTabBar id="idIconTabBar" select="handleIconTabBarSelect" expandable="false">
-						<items>
-							<IconTabFilter showAll="true" count="{countModel>/allModels}" text="{i18n>allModels}" key="Models"/>
-							<IconTabSeparator/>
-							<IconTabFilter icon="sap-icon://status-positive" iconColor="Positive" count="{countModel>/activeModels}" text="{i18n>activeText}" key="Active"/>
-							<IconTabFilter icon="sap-icon://status-inactive" iconColor="Negative" count="{countModel>/inactiveModels}" text="{i18n>inActiveText}" key="Inactive"/>
-						</items>
-						<content>
-						</content>
-					</IconTabBar>-->
 					<Title text="JIT Calls" class="sapUiTinyMarginTop"/>
 					<fb:FilterBar id="filterBar" useToolbar="false" showGoOnFB="true" search="onSearch" showFilterConfiguration="true">
 						<fb:filterItems>
@@ -84,7 +63,7 @@
 		</f:header>
 		<f:content>
 			<Table id="idJITCallsTable" inset="false" items="{ path: 'jitcallsModel>/JITCalls' }" busy="{busyTable>/busy}"
-				updateFinished="onUpdateFinished" mode="MultiSelect" selectionChange="handleVisibilityOfButtons" growing="true" growingScrollToLoad="true"
+				updateFinished="onUpdateFinished" growingThreshold="10" mode="MultiSelect" selectionChange="handleVisibilityOfButtons" growing="true" growingScrollToLoad="true"
 				 noDataText="{i18n>NoDataText}">
 				<headerToolbar>
 					<OverflowToolbar id="otbSubheader">

@@ -47,6 +47,25 @@ sap.ui.define([
 
 			// }
 		},
+		onActionsPress: function(oEvent) {
+			debugger;
+			var oDataModel = this.getView().getModel("actionModel");
+			oDataModel.callFunction("/Z_C_JITInboundMonTPNjit_actions", {
+				"method": "POST",
+				"urlParameters" : {
+					"GUIDKey": "40F2E9AFBE781ED79E814BEA87FB6814",
+					"IsActiveEntity": true,
+					"JitAction": "DELI"
+				},
+				"success": function(oData, response) {
+					debugger;
+				},
+				"error" :function(oError) {
+					debugger;
+				}
+			});
+
+		},
 		statusState: function(sStatus) {
 			// debugger;
 			// if(sStatus ==="sap-icon://error"){
@@ -55,18 +74,18 @@ sap.ui.define([
 			// 	return false;
 			// }
 		},
-		onCreatePress: function(oEvent){
+		onCreatePress: function(oEvent) {
 			debugger;
 			MessageToast.show("Loading Object Page for CG creation");
 			this.bus.publish("flexibleCreate", "setDetailCreatePage");
 		},
-		
+
 		onUpdateFinished: function(oEvent) {
 			debugger;
 			var oCGTable = this.getView().byId("idJITCallsTable");
 			var oCGCountText = oCGTable.getHeaderToolbar().getContent()[0];
 			var count = oCGTable.getModel("jitcallsModel").getData().JITCalls.length;
-			var sText = "Just In Time Calls (" + count +")";
+			var sText = "Just In Time Calls (" + count + ")";
 			oCGCountText.setText(sText)
 		},
 		handleMasterPress: function(oEvent) {
@@ -75,15 +94,15 @@ sap.ui.define([
 			var aJITCalls = oEvent.getSource().getModel("jitcallsModel").getData().JITCalls;
 			var len = aJITCalls.length;
 			var oJITCall = {};
-			for(var i = 0 ; i < len ; i++){
-				if(nInternalCallNumber === aJITCalls[i].InternalCallNumber){
+			for (var i = 0; i < len; i++) {
+				if (nInternalCallNumber === aJITCalls[i].InternalCallNumber) {
 					oJITCall = aJITCalls[i];
 				}
 			}
-			MessageToast.show("Loading Object Page for JITCall "+ oJITCall.InternalCallNumber );
+			MessageToast.show("Loading Object Page for JITCall " + oJITCall.InternalCallNumber);
 			this.bus.publish("flexible", "setDetailPage", oJITCall);
 		},
-		handleViewSettingsDialogButtonPressed: function (oEvent) {
+		handleViewSettingsDialogButtonPressed: function(oEvent) {
 			if (!this._oDialog) {
 				this._oDialog = sap.ui.xmlfragment("com.sapJITMonitor.fragments.ViewSettingDialog", this);
 			}
@@ -91,25 +110,27 @@ sap.ui.define([
 			jQuery.sap.syncStyleClass("sapUiSizeCompact", this.getView(), this._oDialog);
 			this._oDialog.open();
 		},
-		
-		onShowComponentGroupPress : function(oEvent){
+
+		onShowComponentGroupPress: function(oEvent) {
 			debugger;
 			var oJITCallsTable = this.getView().byId("idJITCallsTable");
 			var aSelectedItems = oJITCallsTable.getSelectedItems();
 			var aPaths = [];
-			for(var i = 0; i < aSelectedItems.length; i++){
+			for (var i = 0; i < aSelectedItems.length; i++) {
 				aPaths.push(aSelectedItems[i].getBindingContextPath());
 			}
 			// console.log(aPaths);
 			var aJITCalls = [];
-			for(var j = 0 ; j < aPaths.length; j++){
+			for (var j = 0; j < aPaths.length; j++) {
 				aJITCalls.push(this.getView().getModel("jitcallsModel").getObject(aPaths[j]));
 			}
 			// console.log(aJITCalls);
-			var oCGData = {CG : []};
-			for(var m = 0 ; m < aJITCalls.length; m++){
+			var oCGData = {
+				CG: []
+			};
+			for (var m = 0; m < aJITCalls.length; m++) {
 				var aCGs = aJITCalls[m].ComponentGroups;
-				for(var n = 0 ; n < aCGs.length; n++){
+				for (var n = 0; n < aCGs.length; n++) {
 					oCGData.CG.push(aCGs[n]);
 				}
 			}
@@ -122,7 +143,7 @@ sap.ui.define([
 			var alertsTable = this.byId("idAlertsTable");
 			var aSelectedItems = alertsTable.getSelectedContextPaths();
 			var aSelectedIndices = [];
-			for(var item in aSelectedItems){
+			for (var item in aSelectedItems) {
 				aSelectedIndices.push(Number(aSelectedItems[item].slice(10)));
 			}
 			var oJITContext = {

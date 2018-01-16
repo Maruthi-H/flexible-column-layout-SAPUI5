@@ -3,7 +3,7 @@
 	controllerName="com.sapJITMonitor.controller.DetailDetailCreate" height="100%">
 	<ObjectPageLayout id="idDetailDetailCreateObjectPage" alwaysShowContentHeader="true">
 		<headerTitle>
-			<ObjectPageHeader id="idDetailDetailCreateObjectPageHeader" headerDesign="Light" objectTitle="1000002">
+			<ObjectPageHeader id="idDetailDetailCreateObjectPageHeader" headerDesign="Light" objectTitle="Create Component Group">
 				<actions>
 					<m:Button id="idDetailDetailCreateCallObjectPageEdit" text="Edit" type="Transparent"/>
 				</actions>

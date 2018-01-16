@@ -14,6 +14,17 @@
 		"sourceTemplate": {
 			"id": "ui5template.basicSAPUI5ApplicationProject",
 			"version": "1.40.12"
+		},
+		"dataSources": {
+			"mainService": {
+				"uri": "/sap/opu/odata/sap/ZJIT_DRFAT_CALL_ACTIONS_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
+
 		}
 	},
 
@@ -50,7 +61,7 @@
 				"sap.ui.core": {},
 				"sap.m": {},
 				"sap.ui.layout": {},
-				"sap.ui.table":{},
+				"sap.ui.table": {},
 				"sap.ushell": {},
 				"sap.collaboration": {},
 				"sap.ui.comp": {},
@@ -58,24 +69,24 @@
 			}
 		},
 		"config": {
-				"sample": {
-					"stretch": true,
-					"files": [
-						"Component.js",
-						"FlexibleColumnLayout.controller.js",
-						"FlexibleColumnLayout.view.xml",
-						"Master.controller.js",
-						"Master.view.xml",
-						"Detail.controller.js",
-						"Detail.view.xml",
-						"DetailDetail.view.xml",
-						"ObjectPageSelectedSection.view.xml",
-						"ObjectPageSelectedSection.controller.js",
-						"GoalsBlock.controller.js",
-						"GoalsBlock.js",
-						"GoalsBlock.view.xml"
-					]
-				}
+			"sample": {
+				"stretch": true,
+				"files": [
+					"Component.js",
+					"FlexibleColumnLayout.controller.js",
+					"FlexibleColumnLayout.view.xml",
+					"Master.controller.js",
+					"Master.view.xml",
+					"Detail.controller.js",
+					"Detail.view.xml",
+					"DetailDetail.view.xml",
+					"ObjectPageSelectedSection.view.xml",
+					"ObjectPageSelectedSection.controller.js",
+					"GoalsBlock.controller.js",
+					"GoalsBlock.js",
+					"GoalsBlock.view.xml"
+				]
+			}
 		},
 		"contentDensities": {
 			"compact": true,
@@ -87,6 +98,10 @@
 				"settings": {
 					"bundleName": "com.sapJITMonitor.i18n.i18n"
 				}
+			},
+			"actionModel": {
+				"dataSource": "mainService",
+				"preload": true
 			}
 		},
 		"resources": {
