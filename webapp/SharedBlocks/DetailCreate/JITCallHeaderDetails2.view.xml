@@ -2,6 +2,13 @@
 	<forms:SimpleForm id="idBasicData" labelSpanL="4" labelSpanM="4" labelSpanS="4" emptySpanL="0" emptySpanM="0" emptySpanS="0"
 		maxContainerCols="2" layout="ResponsiveGridLayout" width="100%">
 		<core:Title text="Basic Data"/>
+		<Label text="External Call Number"/>
+		<Input id="idExternalCallNumberCreate" value="" class="sapUiSmallMarginBottom"/>
+		<Label text="Call Type"/>
+		<Input  id="idCallTypeCreate" value=""  class="sapUiSmallMarginBottom"/>
+		<Label text="Shipped Party"/>
+		<Input  id="idShippedPartyCreate" value=""  class="sapUiSmallMarginBottom"/>
+
 		<Label text="External Status"/>
 		<Select forceSelection="false" selectedKey="{/ProductCollection/0/ProductId}"
 			items="{ path: '/ProductCollection', sorter: { path: 'Name' } }">

@@ -16,7 +16,13 @@ sap.ui.define([
 			oJITCallsModel.loadData("model/jitcalls.json", {}, "get", false);
 			oJITCallsModel.setDefaultBindingMode("OneWay");
 			return oJITCallsModel;
-		}
+		},
+		createSelectionModel: function() {
+			var oModel = new JSONModel();
+			var oSelectionModel = {};
+			oModel.setData(oSelectionModel);
+			return oModel;
+		} 
 
 	};
 });

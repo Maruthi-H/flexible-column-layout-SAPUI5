@@ -86,7 +86,48 @@ sap.ui.define([
 		onAfterRendering: function() {
 			debugger;
 		},
-		setDetailCreatePage: function(oEvent){
+		setDetailCreatePage: function(oEvent) {
+			debugger;
+		},
+		onSavePress: function(oEvent) {
+			debugger;
+			this.oPayload = {};
+		
+			this.oPayload.ExternalCallNumber = this.getView().byId(
+				"midCreateView--idDetailCreateHeaderDetails2-Collapsed--idExternalCallNumberCreate").getValue();
+			this.oPayload.CallType = this.getView().byId("midCreateView--idDetailCreateHeaderDetails2-Collapsed--idCallTypeCreate").getValue();
+			this.oPayload.JITCustomer = this.getView().byId("midCreateView--idDetailCreateHeaderDetails2-Collapsed--idShippedPartyCreate").getValue();
+			this.sUrl = "/Z_C_JITInboundMonTP(GUIDKey=guid'" + localStorage.GUIDKey + "',IsActiveEntity=" + localStorage.IsActiveEntity + ")";
+			
+			this.oModel = this.getView().getModel("actionModel");
+			this.oModel.update(this.sUrl, this.oPayload, {
+				success: jQuery.proxy(function(receivedData) {
+					debugger;
+					var that = this;
+					this.oModel.callFunction("/Z_C_JITInboundMonTPActivation", {
+						"method": "POST",
+						"urlParameters": {
+							"GUIDKey": localStorage.GUIDKey,
+							"IsActiveEntity": localStorage.IsActiveEntity
+						},
+						"success": jQuery.proxy(function(oData, response) {
+							debugger;
+							that.oPayload.InternalCallNumber = oData.InternalcallNumber;
+							that.bus.publish("updateJITCallsTable", "updateJITCallsTable",	this.oPayload );
+						//	this.bus.publish("updateJITCallsTable", "updateJITCallsTable");
+						},that),
+						"error": jQuery.proxy(function(oError) {
+							debugger;
+						},that)
+					}, this);
+				}, this),
+				error: jQuery.proxy(function(data) {
+					debugger;
+				}, this)
+			});
+			
+		},
+		onCancelPress: function(oEvent) {
 			debugger;
 		},
 

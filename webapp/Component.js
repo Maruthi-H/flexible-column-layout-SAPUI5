@@ -23,6 +23,7 @@ sap.ui.define([
 			// set the device model
 			this.setModel(models.createDeviceModel(), "device");
 			this.setModel(models.createJITCallsModel(), "jitcallsModel");
+			this.setModel(models.createSelectionModel(), "selectionModel");
 		}
 	});
 });

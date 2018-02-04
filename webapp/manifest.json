@@ -83,7 +83,7 @@
 					"ObjectPageSelectedSection.view.xml",
 					"ObjectPageSelectedSection.controller.js",
 					"GoalsBlock.controller.js",
-					"GoalsBlock.js",
+					"GoalsBlock.js", 
 					"GoalsBlock.view.xml"
 				]
 			}

@@ -1,8 +1,10 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/m/MessageToast",
-	"sap/ui/model/json/JSONModel"
-], function(Controller, MessageToast, JSONModel) {
+	"sap/ui/model/json/JSONModel",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
+], function(Controller, MessageToast, JSONModel, Filter, FilterOperator) {
 	"use strict";
 
 	return Controller.extend("com.sapJITMonitor.controller.Master", {
@@ -10,6 +12,7 @@ sap.ui.define([
 			debugger;
 			// this.byId("idAlertsTable").attachUpdateFinished(jQuery.proxy(this.onUpdateFinished, this));
 			this.bus = sap.ui.getCore().getEventBus();
+			this.bus.subscribe("updateJITCallsTable", "updateJITCallsTable", this.updateJITCallsTable, this);
 			// var oIconTabBar = this.byId("idIconTabBarFiori2");
 			// var sSelctedIconTab = oIconTabBar.getSelectedKey();
 			// if (sSelctedIconTab === "Alerts") {
@@ -47,12 +50,82 @@ sap.ui.define([
 
 			// }
 		},
+		updateJITCallsTable: function(sChannel, sEvent, oData) {
+			debugger;
+			var oTable = this.getView().byId("idJITCallsTable");
+			var oModel = this.getView().byId("idJITCallsTable").getModel("jitcallsModel").getData().JITCalls;
+			var newJITCallEntry = {
+				"InternalCallNumber": oData.InternalCallNumber,
+				"AlertIcon": "sap-icon://status-positive",
+				"GuidKey": "40f2e9af-c500-1ee7-9b89-8e40d5513deb",
+				"ExternalCallNumber": oData.ExternalCallNumber,
+				"ShipToParty": oData.JITCustomer,
+				"SequenceNumber": 5541,
+				"ExternalCallStatus": "Released for Production(RP01)",
+				"LifeCycleStatus": "Create",
+				"CallCreationDate": new Date()
+			};
+			oModel.unshift(newJITCallEntry);
+			this.getView().getModel("jitcallsModel").refresh(true);
+			debugger;
+			var fcl = this.getView().getParent().getParent();
+			var mid = fcl.getCurrentMidColumnPage();
+			fcl.setLayout("OneColumn");
+			// var oJITCallsModel = new JSONModel();
+			// oJITCallsModel.setData();
+		},
+		onSelectionChange: function(oEvent){
+			// debugger;
+			// var a = this.getView().byId("idLifeCycleStatusDropDown");
+			// var key = a.getSelectedKey();
+			// var aSelectedItems = this.getView().byId("idJITCallsTable").getSelectedItems();
+			// var aPaths = [];
+			// for (var i = 0; i < aSelectedItems.length; i++) {
+			// 	aPaths.push(aSelectedItems[i].getBindingContextPath());
+			// }
+			// // console.log(aPaths);
+			// var aJITCalls = [];
+			// for (var j = 0; j < aPaths.length; j++) {
+			// 	aJITCalls.push(this.getView().getModel("jitcallsModel").getObject(aPaths[j]));
+			// } 
+			// var selectionModel = this.getView().getModel("selectionModel").getData();
+			// selectionModel[key] = aJITCalls;
+			
+			// // if(myMap.get(key) == undefined){
+			// // 		myMap.set(key, aJITCalls);
+			// // }else{
+			// // 		myMap.set(key, aJITCalls);
+			// // }	
+			
+			
+ 
+		},
+		onSearch: function(oEvent) {
+			var fcl = this.getView().getParent().getParent();
+			var mid = fcl.getCurrentMidColumnPage();
+			fcl.setLayout("OneColumn");
+			var aFilter = [];
+			var a = this.getView().byId("idLifeCycleStatusDropDown");
+			var sQuery = a.getSelectedKey();
+			if(sQuery == "All"){
+					aFilter.push(new Filter("LifeCycleStatus",FilterOperator.Contains, "Create"));
+					aFilter.push(new Filter("LifeCycleStatus",FilterOperator.Contains, "In process"));
+			}
+			else if(sQuery) {
+				aFilter.push(new Filter("LifeCycleStatus",FilterOperator.Contains, sQuery));
+			}
+			// filter binding
+			var oList = this.getView().byId("idJITCallsTable");
+			var oBinding = oList.getBinding("items");
+			oBinding.filter(aFilter);
+		},
+
 		onActionsPress: function(oEvent) {
 			debugger;
 			var oDataModel = this.getView().getModel("actionModel");
 			oDataModel.callFunction("/Z_C_JITInboundMonTPNjit_actions", {
 				"method": "POST",
-				"urlParameters" : {
+				"urlParameters": {
 					"GUIDKey": "40F2E9AFBE781ED79E814BEA87FB6814",
 					"IsActiveEntity": true,
 					"JitAction": "DELI"
@@ -60,7 +133,7 @@ sap.ui.define([
 				"success": function(oData, response) {
 					debugger;
 				},
-				"error" :function(oError) {
+				"error": function(oError) {
 					debugger;
 				}
 			});
@@ -76,6 +149,17 @@ sap.ui.define([
 		},
 		onCreatePress: function(oEvent) {
 			debugger;
+			var oModel = this.getOwnerComponent().getModel("actionModel");
+			oModel.create("/Z_C_JITInboundMonTP", {}, {
+				success: function(oData) {
+					debugger;
+					localStorage.setItem("GUIDKey", oData.GUIDKey);
+					localStorage.setItem("IsActiveEntity", oData.IsActiveEntity);
+				},
+				error: function(oError) {
+					debugger;
+				}
+			});
 			MessageToast.show("Loading Object Page for CG creation");
 			this.bus.publish("flexibleCreate", "setDetailCreatePage");
 		},
@@ -84,7 +168,12 @@ sap.ui.define([
 			debugger;
 			var oCGTable = this.getView().byId("idJITCallsTable");
 			var oCGCountText = oCGTable.getHeaderToolbar().getContent()[0];
-			var count = oCGTable.getModel("jitcallsModel").getData().JITCalls.length;
+			try {
+				var count = oCGTable.getModel("jitcallsModel").getData().JITCalls.length;
+			} catch (e) {
+				console.log(e.message);
+			}
+
 			var sText = "Just In Time Calls (" + count + ")";
 			oCGCountText.setText(sText)
 		},

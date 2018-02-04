@@ -16,14 +16,12 @@
 									</Select>
 								</fb:control>
 							</fb:FilterItem>
-							<fb:FilterItem name="B" label="Ship to Party">
+							<fb:FilterItem name="B" label="Ship To Party">
 								<fb:control>
-									<Input id="idShipToPartyValueHelp" type="Text" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleValueHelp"
-										suggestionItems="{/ProductCollection}">
-										<suggestionItems>
-											<core:Item text="{Name}"/>
-										</suggestionItems>
-									</Input>
+									<Select id="idShippedToPartyDropDown" change="onSelectChange" forceSelection="true">
+										<core:Item key="BMW" text="BMW"/>
+										<core:Item key="VOLVO" text="VOLVO"/>
+									</Select>
 								</fb:control>
 							</fb:FilterItem>
 							<fb:FilterItem name="C" label="External Call Status">
@@ -37,9 +35,9 @@
 							<fb:FilterItem name="D" label="Lifecycle Status">
 								<fb:control>
 									<Select id="idLifeCycleStatusDropDown" change="onSelectChange" forceSelection="true">
-										<core:Item key="all" text="All"/>
-										<core:Item key="create" text="Create"/>
-										<core:Item key="inprocess" text="In Process"/>
+									<core:Item key="All" text="All"/>
+										<core:Item key="Create" text="Create"/>
+										<core:Item key="In process" text="In process"/>
 									</Select>
 								</fb:control>
 							</fb:FilterItem>
